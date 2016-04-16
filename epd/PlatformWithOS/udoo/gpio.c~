@@ -1,0 +1,38 @@
+#include "gpio.h"
+//#include "linux-virtual.h"
+#include "sysfs.h"
+#include "wiring.h"
+
+
+void GPIO_mode(uint8_t pin, uint8_t mode)
+{
+	//if (g_APinDescription[pin].pinType == GPIO) {
+		if (mode == INPUT)
+{
+			gpio_setdirection(pin, "in");
+}
+
+		else
+{
+			gpio_setdirection(pin, "out");
+	}
+	return;
+}
+
+void GPIO_write(uint8_t pin, uint8_t val)
+{
+	//if (g_APinDescription[pin].pinType == GPIO)
+		sysfs_gpio_setvalue(pin, val);
+//	else if (g_APinDescription[pin].pinType == LED)
+		//sysfs_led_setvalue(pin, val);
+	//else
+		//return;
+}
+
+int GPIO_read(uint8_t pin)
+{
+	//if (g_APinDescription[pin].pinType == GPIO)
+		return sysfs_gpio_getvalue(pin);
+	//else
+	//	return 0;
+}
