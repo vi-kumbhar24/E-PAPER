@@ -71,17 +71,6 @@ version-check:
 	 [ -z "$${flag}" ] && $(MAKE) version-error && false || true
 
 
-# Raspberry Pi targets
-# --------------------
-
-.PHONY: rpi raspberrypi
-rpi raspberrypi: version-check
-	$(MAKE) PLATFORM=../RaspberryPi PANEL_VERSION="${PANEL_VERSION}" EPD_IO="${EPD_IO}" -C driver-common
-
-rpi-%: version-check
-	$(MAKE) PLATFORM=../RaspberryPi PANEL_VERSION="${PANEL_VERSION}" EPD_IO="${EPD_IO}" -C driver-common $*
-
-
 # udoo targets
 # ------------------------
 
